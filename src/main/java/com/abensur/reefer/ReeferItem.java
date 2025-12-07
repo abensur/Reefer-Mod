@@ -175,7 +175,8 @@ public class ReeferItem extends Item {
         // Default: Clear all effects (like milk)
         player.removeAllEffects();
 
-        // Apply slight slowness (Slowness I for 10 seconds)
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 0));
+        // Apply slight slowness (Slowness I for 10 seconds) WITHOUT particles
+        // ambient=false, showParticles=false, showIcon=true
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 0, false, false, true));
     }
 }
