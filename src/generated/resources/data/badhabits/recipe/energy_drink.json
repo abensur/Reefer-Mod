@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "N": {
-      "item": "minecraft:iron_nugget"
-    },
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "S": {
-      "item": "minecraft:sugar"
-    }
+    "N": "minecraft:iron_nugget",
+    "R": "minecraft:redstone",
+    "S": "minecraft:sugar"
   },
   "pattern": [
     "NRN",
