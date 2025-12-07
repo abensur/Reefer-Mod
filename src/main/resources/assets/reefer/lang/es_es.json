@@ -1,0 +1,11 @@
+{
+  "itemGroup.reefer": "Reefer",
+  "item.reefer.rolling_paper": "Papel de Liar",
+  "item.reefer.rolling_paper.tooltip": "Se usa para hacer cigarrillos de hierba",
+  "item.reefer.reefer": "Cigarrillo de Hierba",
+  "item.reefer.reefer.tooltip.clears_effects": "Elimina todos los efectos de estado",
+  "item.reefer.reefer.tooltip.applies_slowness": "Aplica Lentitud I durante 10 segundos",
+  "item.reefer.reefer.tooltip.uses": "Usos: %s / %s",
+  "item.reefer.ground_grass": "Hierba Molida",
+  "item.reefer.ground_grass.tooltip": "Ingrediente de fabricación para cigarrillos"
+}

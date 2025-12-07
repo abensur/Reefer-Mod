@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "reefer:item/reefer_fresh"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 1
+      },
+      "model": "reefer:item/reefer_fresh_burning"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 2
+      },
+      "model": "reefer:item/reefer_smoked"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 3
+      },
+      "model": "reefer:item/reefer_smoked_burning"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 4
+      },
+      "model": "reefer:item/reefer_half"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 5
+      },
+      "model": "reefer:item/reefer_half_burning"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 6
+      },
+      "model": "reefer:item/reefer_roach"
+    },
+    {
+      "predicate": {
+        "custom_model_data": 7
+      },
+      "model": "reefer:item/reefer_roach_burning"
+    }
+  ]
+}

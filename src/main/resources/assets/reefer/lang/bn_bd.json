@@ -1,0 +1,11 @@
+{
+  "itemGroup.reefer": "Reefer",
+  "item.reefer.rolling_paper": "রোলিং পেপার",
+  "item.reefer.rolling_paper.tooltip": "ঘাস সিগারেট তৈরি করতে ব্যবহৃত হয়",
+  "item.reefer.reefer": "ঘাস সিগারেট",
+  "item.reefer.reefer.tooltip.clears_effects": "সমস্ত স্ট্যাটাস প্রভাব মুছে দেয়",
+  "item.reefer.reefer.tooltip.applies_slowness": "10 সেকেন্ডের জন্য স্লোনেস I প্রয়োগ করে",
+  "item.reefer.reefer.tooltip.uses": "ব্যবহার: %s / %s",
+  "item.reefer.ground_grass": "পিষ্ট ঘাস",
+  "item.reefer.ground_grass.tooltip": "ঘাস সিগারেট তৈরির জন্য উপাদান"
+}

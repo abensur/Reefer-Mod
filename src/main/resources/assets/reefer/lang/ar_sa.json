@@ -1,0 +1,11 @@
+{
+  "itemGroup.reefer": "Reefer",
+  "item.reefer.rolling_paper": "ورق لف",
+  "item.reefer.rolling_paper.tooltip": "يستخدم لصنع السجائر العشبية",
+  "item.reefer.reefer": "سيجارة عشبية",
+  "item.reefer.reefer.tooltip.clears_effects": "يزيل جميع تأثيرات الحالة",
+  "item.reefer.reefer.tooltip.applies_slowness": "يطبق البطء I لمدة 10 ثوانٍ",
+  "item.reefer.reefer.tooltip.uses": "الاستخدامات: %s / %s",
+  "item.reefer.ground_grass": "عشب مطحون",
+  "item.reefer.ground_grass.tooltip": "مكون صناعة السجائر العشبية"
+}

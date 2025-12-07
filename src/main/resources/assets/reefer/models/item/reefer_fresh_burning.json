@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "reefer:item/reefer_fresh_burning"
+  }
+}

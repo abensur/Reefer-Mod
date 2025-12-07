@@ -1,0 +1,11 @@
+{
+  "itemGroup.reefer": "Reefer",
+  "item.reefer.rolling_paper": "巻紙",
+  "item.reefer.rolling_paper.tooltip": "草タバコを作るために使用",
+  "item.reefer.reefer": "草タバコ",
+  "item.reefer.reefer.tooltip.clears_effects": "すべてのステータス効果を除去",
+  "item.reefer.reefer.tooltip.applies_slowness": "鈍化 I を10秒間付与",
+  "item.reefer.reefer.tooltip.uses": "使用回数: %s / %s",
+  "item.reefer.ground_grass": "粉砕草",
+  "item.reefer.ground_grass.tooltip": "草タバコの製作材料"
+}

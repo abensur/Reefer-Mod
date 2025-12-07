@@ -1,0 +1,11 @@
+{
+  "itemGroup.reefer": "Reefer",
+  "item.reefer.rolling_paper": "Papel de Enrolar",
+  "item.reefer.rolling_paper.tooltip": "Usado para criar cigarros de erva",
+  "item.reefer.reefer": "Cigarro de Erva",
+  "item.reefer.reefer.tooltip.clears_effects": "Remove todos os efeitos de status",
+  "item.reefer.reefer.tooltip.applies_slowness": "Aplica Lentidão I por 10 segundos",
+  "item.reefer.reefer.tooltip.uses": "Usos: %s / %s",
+  "item.reefer.ground_grass": "Erva Moída",
+  "item.reefer.ground_grass.tooltip": "Ingrediente para criar cigarros de erva"
+}

@@ -1,0 +1,79 @@
+# Gradle
+.gradle/
+build/
+out/
+bin/
+
+# Eclipse
+.settings/
+.metadata/
+.classpath
+.project
+*.launch
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VSCode
+.vscode/
+.factorypath
+
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Minecraft run directory (test worlds, logs, etc.)
+run/
+logs/
+
+# Compiled class files
+*.class
+
+# Generated sources
+.cache/
+
+# LSP/Clojure (from your .clj-kondo and .lsp folders)
+.clj-kondo/.cache/
+.lsp/.cache/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~.nib
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Exception: Keep the gradle wrapper jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Virtual environment (if using Python for texture generation)
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# Mod build artifacts (except the actual release jar if you want to track it)
+# Uncomment to ignore all jars in build output:
+# build/libs/*.jar
+
+# Configuration cache
+.gradle/configuration-cache/
