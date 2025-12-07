@@ -1,21 +1,40 @@
 
-# Reefer Mod
+# Bad Habits
 
-A Minecraft mod that adds rolling papers and consumable reefers with unique effects.
+A Minecraft mod that adds consumable items with meaningful tradeoffs and interesting mechanics.
 
 ## Features
 
+### Reefer
 - **Rolling Paper**: Craftable with paper and slime ball (makes 32)
 - **Ground Grass**: Process short grass into ground material
-- **Reefer**: Consumable item that clears status effects but applies slowness
+- **Reefer**: Consumable item that clears all status effects but applies slowness
 - **Durability System**: Each reefer has 8 uses with visual progression
 - **Particle Effects**: Smoke particles while using
 
+### Energy Drink
+- **Emergency Flight**: Grants 10 seconds of creative flight
+- **High Cost**: Drains 5-6 hunger points + Hunger III during flight
+- **Energy Crash**: Weakness II & Mining Fatigue II for 30 seconds after
+- **3 Uses**: Non-stackable with durability
+- **Recipe**: Iron nuggets, redstone, and sugar
+
+### MSGG (Flavor Enhancer)
+- **Food Doubler**: Next food eaten gives double nutrition and saturation
+- **30 Second Buff**: Use within 30 seconds or it expires
+- **3 Uses**: Non-stackable with durability
+- **Recipe**: Any mushroom, seagrass, and ground grass
+
+## Design Philosophy
+
+All items in Bad Habits follow the same principle: **meaningful tradeoffs**. Each item is powerful but comes with significant costs, making them situational emergency tools rather than routine-use items. This maintains game balance while adding interesting tactical decisions.
+
 ## For Mod Developers
 
-Want to add your own smokeable herbs? Just extend `ReeferItem` and override one method!
+Want to add your own consumables? Items can easily be extended:
 
 ```java
+// Example: Custom reefer variant
 public class LavenderReeferItem extends ReeferItem {
     public LavenderReeferItem(Properties properties) {
         super(properties);
@@ -28,6 +47,8 @@ public class LavenderReeferItem extends ReeferItem {
     }
 }
 ```
+
+Package: `com.abensur.badhabits`
 
 See **[EXAMPLE_INTEGRATION.md](EXAMPLE_INTEGRATION.md)** for complete examples!
 

@@ -9,7 +9,7 @@ Want to add your own herb that can be smoked? Just extend `ReeferItem`!
 ```java
 package com.yourname.yourmod;
 
-import com.abensur.reefer.ReeferItem;
+import com.abensur.badhabits.ReeferItem;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -68,7 +68,7 @@ public class YourMod {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {"item": "yourmod:ground_lavender"},
-    {"tag": "reefer:rolling_papers"}
+    {"tag": "badhabits:rolling_papers"}
   ],
   "result": {"item": "yourmod:lavender_reefer"}
 }
@@ -90,7 +90,7 @@ Your lavender reefer:
 - Has 8 uses with durability bar
 - Shows visual stages as it's used
 - Clears all effects and applies Regeneration + Damage Resistance
-- Works with any mod's rolling papers (via the `reefer:rolling_papers` tag)
+- Works with any mod's rolling papers (via the `badhabits:rolling_papers` tag)
 
 ## More Examples
 
