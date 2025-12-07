@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ground_grass": {
+      "conditions": {
+        "items": [
+          {
+            "items": "badhabits:ground_grass"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_rolling_paper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "badhabits:rolling_paper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "badhabits:reefer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_ground_grass",
+      "has_rolling_paper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "badhabits:reefer"
+    ]
+  }
+}
