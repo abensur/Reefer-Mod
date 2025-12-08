@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "badhabits:item/energy_drink"
+    "layer0": "badhabits:item/red_energy_drink"
   }
 }

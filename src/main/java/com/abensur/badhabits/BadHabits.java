@@ -46,9 +46,17 @@ public class BadHabits {
     public static final DeferredItem<Item> REEFER = ITEMS.register("reefer",
             () -> new ReeferItem(new Item.Properties().durability(8)));
 
-    // Energy Drink consumable - grants temporary flight with debuffs
-    public static final DeferredItem<Item> ENERGY_DRINK = ITEMS.register("energy_drink",
-            () -> new EnergyDrinkItem(new Item.Properties().durability(3)));
+    // Energy Drink Base - crafting ingredient (not consumable)
+    public static final DeferredItem<Item> ENERGY_DRINK_BASE = ITEMS.register("energy_drink_base",
+            () -> new EnergyDrinkBaseItem(new Item.Properties()));
+
+    // Red Energy Drink - grants temporary flight with debuffs
+    public static final DeferredItem<Item> RED_ENERGY_DRINK = ITEMS.register("red_energy_drink",
+            () -> new RedEnergyDrinkItem(new Item.Properties().durability(3)));
+
+    // Green Energy Drink - grants haste and jump boost with debuffs
+    public static final DeferredItem<Item> GREEN_ENERGY_DRINK = ITEMS.register("green_energy_drink",
+            () -> new GreenEnergyDrinkItem(new Item.Properties().durability(3)));
 
     // MSGG consumable - doubles next food nutrition
     public static final DeferredItem<Item> MSGG = ITEMS.register("msgg",
@@ -72,6 +80,15 @@ public class BadHabits {
             .build()
     );
 
+    // Attachment type for tracking green energy drink beast mode duration
+    @SuppressWarnings("null")
+    public static final Supplier<AttachmentType<Long>> BEAST_MODE_END_TIME = ATTACHMENTS.register(
+        "beast_mode_end_time",
+        () -> AttachmentType.builder(() -> 0L)
+            .serialize(Codec.LONG)
+            .build()
+    );
+
     // Creates a creative tab with the id "badhabits:bad_habits_tab" for mod items
     @SuppressWarnings("null")
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> REEFER_TAB = CREATIVE_MODE_TABS.register("bad_habits_tab", () -> CreativeModeTab.builder()
@@ -82,7 +99,9 @@ public class BadHabits {
                 output.accept(ROLLING_PAPER.get());
                 output.accept(GROUND_GRASS.get());
                 output.accept(REEFER.get());
-                output.accept(ENERGY_DRINK.get());
+                output.accept(ENERGY_DRINK_BASE.get());
+                output.accept(RED_ENERGY_DRINK.get());
+                output.accept(GREEN_ENERGY_DRINK.get());
                 output.accept(MSGG.get());
             }).build());
 

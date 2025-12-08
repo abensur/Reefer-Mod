@@ -30,6 +30,7 @@ public class EnergyDrinkHandler {
         MinecraftServer server = event.getServer();
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+            // Handle Red Energy Drink (Flight)
             if (player.hasData(BadHabits.FLIGHT_END_TIME)) {
                 long endTime = player.getData(BadHabits.FLIGHT_END_TIME);
 
@@ -55,6 +56,33 @@ public class EnergyDrinkHandler {
 
                     // Reset timestamp
                     player.setData(BadHabits.FLIGHT_END_TIME, 0L);
+                }
+            }
+
+            // Handle Green Energy Drink (Beast Mode)
+            if (player.hasData(BadHabits.BEAST_MODE_END_TIME)) {
+                long endTime = player.getData(BadHabits.BEAST_MODE_END_TIME);
+
+                if (endTime > 0 && server.overworld().getGameTime() >= endTime) {
+                    // Apply crash effects after beast mode ends
+                    if (!player.isCreative() && !player.isSpectator()) {
+                        // "Beast Tamed" - crash effects for 30 seconds (600 ticks)
+                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600, 1, false, false, true)); // Weakness II, no particles
+                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 1, false, false, true)); // Slowness II, no particles
+
+                        // Crash particles
+                        ServerLevel level = (ServerLevel) player.level();
+                        level.sendParticles(ParticleTypes.SMOKE,
+                            player.getX(), player.getY() + 1, player.getZ(),
+                            25, 0.3, 0.5, 0.3, 0.03);
+
+                        // Crash sound
+                        level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                            SoundEvents.BEACON_DEACTIVATE, SoundSource.PLAYERS, 0.5F, 0.6F);
+                    }
+
+                    // Reset timestamp
+                    player.setData(BadHabits.BEAST_MODE_END_TIME, 0L);
                 }
             }
         }

@@ -21,8 +21,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-public class EnergyDrinkItem extends Item {
-    public EnergyDrinkItem(Properties properties) {
+public class RedEnergyDrinkItem extends Item {
+    public RedEnergyDrinkItem(Properties properties) {
         super(properties);
     }
 
@@ -34,15 +34,15 @@ public class EnergyDrinkItem extends Item {
     @Override
     @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("item.badhabits.energy_drink.tooltip.flight").withStyle(ChatFormatting.BLUE));
-        tooltipComponents.add(Component.translatable("item.badhabits.energy_drink.tooltip.hunger").withStyle(ChatFormatting.RED));
-        tooltipComponents.add(Component.translatable("item.badhabits.energy_drink.tooltip.crash").withStyle(ChatFormatting.RED));
+        tooltipComponents.add(Component.translatable("item.badhabits.red_energy_drink.tooltip.boost").withStyle(ChatFormatting.BLUE));
+        tooltipComponents.add(Component.translatable("item.badhabits.red_energy_drink.tooltip.hunger").withStyle(ChatFormatting.RED));
+        tooltipComponents.add(Component.translatable("item.badhabits.red_energy_drink.tooltip.crash").withStyle(ChatFormatting.RED));
 
         // Add durability/uses information
         int maxDamage = stack.getMaxDamage();
         int damage = stack.getDamageValue();
         int usesRemaining = maxDamage - damage;
-        tooltipComponents.add(Component.translatable("item.badhabits.energy_drink.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.red_energy_drink.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
@@ -75,12 +75,12 @@ public class EnergyDrinkItem extends Item {
             player.onUpdateAbilities();
 
             // Store when flight should end (gameTime + duration)
-            long endTime = level.getGameTime() + 200; // 10 seconds = 200 ticks
+            long endTime = level.getGameTime() + 1200; // 1 minute = 1200 ticks
             player.setData(BadHabits.FLIGHT_END_TIME, endTime);
 
             // Apply immediate effects
             player.getFoodData().addExhaustion(6.0F); // -5 to -6 hunger
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 2, false, false, true)); // Hunger III for 10s, no particles
+            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 1200, 2, false, false, true)); // Hunger III for 1 minute, no particles
 
             // Activation particles
             if (level instanceof ServerLevel serverLevel) {

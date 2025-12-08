@@ -43,17 +43,37 @@ public class BadHabitsRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_rolling_paper", has(BadHabits.ROLLING_PAPER.get()))
                 .save(output);
 
-        // Energy Drink recipe: 6x Iron Nugget + 1x Redstone + 2x Sugar -> Energy Drink
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.ENERGY_DRINK.get())
-                .pattern("NRN")
+        // Energy Drink Base recipe: 6x Iron Nugget + 2x Sugar + 1x Water Bottle -> Energy Drink Base
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.ENERGY_DRINK_BASE.get())
                 .pattern("NSN")
+                .pattern("NWN")
                 .pattern("NSN")
                 .define('N', (ItemLike) Items.IRON_NUGGET)
-                .define('R', (ItemLike) Items.REDSTONE)
                 .define('S', (ItemLike) Items.SUGAR)
+                .define('W', (ItemLike) Items.POTION) // Water bottle
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
-                .unlockedBy("has_redstone", has(Items.REDSTONE))
                 .unlockedBy("has_sugar", has(Items.SUGAR))
+                .unlockedBy("has_water_bottle", has(Items.POTION))
+                .save(output);
+
+        // Red Energy Drink recipe: Energy Drink Base + Red Dye + Leather -> Red Energy Drink
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BadHabits.RED_ENERGY_DRINK.get())
+                .requires(BadHabits.ENERGY_DRINK_BASE.get())
+                .requires((ItemLike) Items.RED_DYE)
+                .requires((ItemLike) Items.LEATHER)
+                .unlockedBy("has_energy_drink_base", has(BadHabits.ENERGY_DRINK_BASE.get()))
+                .unlockedBy("has_red_dye", has(Items.RED_DYE))
+                .unlockedBy("has_leather", has(Items.LEATHER))
+                .save(output);
+
+        // Green Energy Drink recipe: Energy Drink Base + Green Dye + Rotten Flesh -> Green Energy Drink
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BadHabits.GREEN_ENERGY_DRINK.get())
+                .requires(BadHabits.ENERGY_DRINK_BASE.get())
+                .requires((ItemLike) Items.GREEN_DYE)
+                .requires((ItemLike) Items.ROTTEN_FLESH)
+                .unlockedBy("has_energy_drink_base", has(BadHabits.ENERGY_DRINK_BASE.get()))
+                .unlockedBy("has_green_dye", has(Items.GREEN_DYE))
+                .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
                 .save(output);
 
         // MSGG recipe: Any Mushroom + Seagrass + Ground Grass -> MSGG
