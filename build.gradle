@@ -19,6 +19,10 @@ group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        name = "Curios Maven"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 
 base {
@@ -112,6 +116,10 @@ configurations {
 }
 
 dependencies {
+    // Curios API for bauble/trinket slots
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    localRuntime "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
@@ -185,4 +193,41 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+// Copy testing datapack to all existing worlds
+// Runs automatically before runClient
+task copyTestDatapack {
+    description = 'Copies the testing datapack to all world saves'
+    group = 'development'
+    notCompatibleWithConfigurationCache("Accesses project files at execution time")
+
+    doLast {
+        def savesDir = project.file('run/saves')
+        if (!savesDir.exists()) {
+            println "No saves directory found yet. Create a world first!"
+            return
+        }
+
+        def worldCount = 0
+        savesDir.listFiles().each { worldDir ->
+            if (worldDir.isDirectory()) {
+                def datapackDest = new File(worldDir, 'datapacks/testing')
+                datapackDest.parentFile.mkdirs()
+
+                project.copy {
+                    from 'data/minecraft/datapacks/testing'
+                    into datapackDest
+                }
+                println "✓ Copied to: ${worldDir.name}"
+                worldCount++
+            }
+        }
+        println "Datapack copied to ${worldCount} world(s). Use /reload in-game."
+    }
+}
+
+// Automatically copy datapack before running client
+tasks.named('runClient').configure {
+    dependsOn copyTestDatapack
 }
