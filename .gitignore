@@ -77,3 +77,6 @@ __pycache__/
 
 # Configuration cache
 .gradle/configuration-cache/
+
+# Testing datapack (dev only)
+data/minecraft/datapacks/testing/

@@ -1,11 +1,16 @@
 package com.abensur.badhabits;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
@@ -44,19 +49,22 @@ public class BadHabitsRecipeProvider extends RecipeProvider {
                 .save(output);
 
         // Energy Drink Base recipe: 6x Iron Nugget + 2x Sugar + 1x Water Bottle -> Energy Drink Base
+        // Create a water bottle ItemStack with the proper data component
+        ItemStack waterBottle = new ItemStack(Items.POTION);
+        waterBottle.set(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER));
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.ENERGY_DRINK_BASE.get())
                 .pattern("NSN")
                 .pattern("NWN")
                 .pattern("NSN")
                 .define('N', (ItemLike) Items.IRON_NUGGET)
                 .define('S', (ItemLike) Items.SUGAR)
-                .define('W', (ItemLike) Items.POTION) // Water bottle
+                .define('W', DataComponentIngredient.of(false, waterBottle)) // Water bottle - partial match
                 .unlockedBy("has_iron_nugget", has(Items.IRON_NUGGET))
                 .unlockedBy("has_sugar", has(Items.SUGAR))
                 .unlockedBy("has_water_bottle", has(Items.POTION))
                 .save(output);
 
-        // Red Energy Drink recipe: Energy Drink Base + Red Dye + Leather -> Red Energy Drink
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BadHabits.RED_ENERGY_DRINK.get())
                 .requires(BadHabits.ENERGY_DRINK_BASE.get())
                 .requires((ItemLike) Items.RED_DYE)

@@ -20,7 +20,7 @@ A Minecraft mod that adds consumable items with meaningful tradeoffs and interes
 - **Recipe**: Iron nuggets, redstone, and sugar
 
 ### MSGG (Flavor Enhancer)
-- **Food Doubler**: Next food eaten gives double nutrition and saturation
+- **Food Doubler**: Next food eaten restores double hunger and saturation
 - **30 Second Buff**: Use within 30 seconds or it expires
 - **3 Uses**: Non-stackable with durability
 - **Recipe**: Any mushroom, seagrass, and ground grass

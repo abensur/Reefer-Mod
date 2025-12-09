@@ -58,7 +58,7 @@ public class BadHabits {
     public static final DeferredItem<Item> GREEN_ENERGY_DRINK = ITEMS.register("green_energy_drink",
             () -> new GreenEnergyDrinkItem(new Item.Properties().durability(3)));
 
-    // MSGG consumable - doubles next food nutrition
+    // MSGG consumable - doubles next food restoration
     public static final DeferredItem<Item> MSGG = ITEMS.register("msgg",
             () -> new MSGGItem(new Item.Properties().durability(3)));
 

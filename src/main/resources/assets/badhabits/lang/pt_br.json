@@ -23,5 +23,6 @@
   "item.badhabits.msgg": "MSGG",
   "item.badhabits.msgg.tooltip.effect": "Dobra a nutrição da próxima refeição",
   "item.badhabits.msgg.tooltip.duration": "Efeito dura 30 segundos",
+  "item.badhabits.msgg.tooltip.sideeffect": "Causa Náusea I por 20 segundos",
   "item.badhabits.msgg.tooltip.uses": "Usos: %s / %s"
 }

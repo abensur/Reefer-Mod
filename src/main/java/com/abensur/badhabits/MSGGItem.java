@@ -11,6 +11,8 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -34,6 +36,7 @@ public class MSGGItem extends Item {
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.effect").withStyle(ChatFormatting.GOLD));
         tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.duration").withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.sideeffect").withStyle(ChatFormatting.RED));
 
         // Add durability/uses information
         int maxDamage = stack.getMaxDamage();
@@ -69,6 +72,9 @@ public class MSGGItem extends Item {
             // Store when MSGG buff should end (gameTime + duration)
             long endTime = level.getGameTime() + 600; // 30 seconds = 600 ticks
             player.setData(BadHabits.MSGG_BUFF_END_TIME, endTime);
+
+            // Apply negative effect (Nausea for 20 seconds)
+            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0, false, false, true)); // Nausea I for 20 seconds
 
             // Activation particles (golden/yellow for food enhancement)
             if (level instanceof ServerLevel serverLevel) {

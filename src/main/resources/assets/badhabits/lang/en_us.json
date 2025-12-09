@@ -21,7 +21,8 @@
   "item.badhabits.green_energy_drink.tooltip.crash": "Weakness II & Slowness II for 30s after",
   "item.badhabits.green_energy_drink.tooltip.uses": "Uses: %s / %s",
   "item.badhabits.msgg": "MSGG",
-  "item.badhabits.msgg.tooltip.effect": "Doubles nutrition from next food eaten",
-  "item.badhabits.msgg.tooltip.duration": "Buff lasts 30 seconds",
+  "item.badhabits.msgg.tooltip.effect": "Adds more flavour to your next meal",
+  "item.badhabits.msgg.tooltip.duration": "Must eat something in the next 30 seconds",
+  "item.badhabits.msgg.tooltip.sideeffect": "Causes Nausea I for 20 seconds",
   "item.badhabits.msgg.tooltip.uses": "Uses: %s / %s"
 }
