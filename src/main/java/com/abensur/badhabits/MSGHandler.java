@@ -10,10 +10,10 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-public class MSGGHandler {
+public class MSGHandler {
     public static void register(IEventBus modBus) {
-        NeoForge.EVENT_BUS.addListener(MSGGHandler::onServerTick);
-        NeoForge.EVENT_BUS.addListener(MSGGHandler::onFoodEaten);
+        NeoForge.EVENT_BUS.addListener(MSGHandler::onServerTick);
+        NeoForge.EVENT_BUS.addListener(MSGHandler::onFoodEaten);
     }
 
     @SuppressWarnings("null")
@@ -21,13 +21,13 @@ public class MSGGHandler {
         MinecraftServer server = event.getServer();
 
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-            if (player.hasData(BadHabits.MSGG_BUFF_END_TIME)) {
-                long endTime = player.getData(BadHabits.MSGG_BUFF_END_TIME);
+            if (player.hasData(BadHabits.MSG_BUFF_END_TIME)) {
+                long endTime = player.getData(BadHabits.MSG_BUFF_END_TIME);
 
                 // Check if buff has expired
                 if (endTime > 0 && server.overworld().getGameTime() >= endTime) {
                     // Reset timestamp (buff expired without being used)
-                    player.setData(BadHabits.MSGG_BUFF_END_TIME, 0L);
+                    player.setData(BadHabits.MSG_BUFF_END_TIME, 0L);
                 }
             }
         }
@@ -38,9 +38,9 @@ public class MSGGHandler {
         if (event.getEntity() instanceof Player player && !player.level().isClientSide()) {
             ItemStack itemStack = event.getItem();
 
-            // Check if player has MSGG buff active
-            if (player.hasData(BadHabits.MSGG_BUFF_END_TIME)) {
-                long endTime = player.getData(BadHabits.MSGG_BUFF_END_TIME);
+            // Check if player has MSG buff active
+            if (player.hasData(BadHabits.MSG_BUFF_END_TIME)) {
+                long endTime = player.getData(BadHabits.MSG_BUFF_END_TIME);
                 long currentTime = player.level().getGameTime();
 
                 // Only apply bonus if buff is still active
@@ -56,7 +56,7 @@ public class MSGGHandler {
                         player.getFoodData().eat(nutrition, saturation);
 
                         // Clear the buff after use
-                        player.setData(BadHabits.MSGG_BUFF_END_TIME, 0L);
+                        player.setData(BadHabits.MSG_BUFF_END_TIME, 0L);
 
                         // Play success sound
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),

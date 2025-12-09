@@ -84,21 +84,38 @@ public class BadHabitsRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
                 .save(output);
 
-        // MSGG recipe: Any Mushroom + Seagrass + Ground Grass -> MSGG
+        // MSG recipe: Any Mushroom + Sugar + Gunpowder -> MSG
         // Using Ingredient.of() to accept multiple mushroom types including modded ones
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BadHabits.MSGG.get())
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BadHabits.MSG.get())
                 .requires(Ingredient.of(
                     Items.BROWN_MUSHROOM,
                     Items.RED_MUSHROOM,
                     Items.CRIMSON_FUNGUS,
                     Items.WARPED_FUNGUS
                 ))
-                .requires((ItemLike) Items.SEAGRASS)
-                .requires(BadHabits.GROUND_GRASS.get())
+                .requires((ItemLike) Items.SUGAR)
+                .requires((ItemLike) Items.GUNPOWDER)
                 .unlockedBy("has_mushroom", has(Items.BROWN_MUSHROOM))
                 .unlockedBy("has_red_mushroom", has(Items.RED_MUSHROOM))
-                .unlockedBy("has_seagrass", has(Items.SEAGRASS))
-                .unlockedBy("has_ground_grass", has(BadHabits.GROUND_GRASS.get()))
+                .unlockedBy("has_sugar", has(Items.SUGAR))
+                .unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
+                .save(output);
+
+        // Tear Locker recipe: Heavy Core + Ghast Tears + Rolling Papers (shaped)
+        // Pattern:
+        //   [ ] [Rolling Paper] [ ]
+        //   [Ghast Tear] [Heavy Core] [Ghast Tear]
+        //   [ ] [Rolling Paper] [ ]
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.TEAR_LOCKER.get())
+                .pattern(" R ")
+                .pattern("THT")
+                .pattern(" R ")
+                .define('R', BadHabits.ROLLING_PAPER.get())
+                .define('T', Items.GHAST_TEAR)
+                .define('H', Items.HEAVY_CORE)
+                .unlockedBy("has_heavy_core", has(Items.HEAVY_CORE))
+                .unlockedBy("has_ghast_tear", has(Items.GHAST_TEAR))
+                .unlockedBy("has_rolling_paper", has(BadHabits.ROLLING_PAPER.get()))
                 .save(output);
     }
 }

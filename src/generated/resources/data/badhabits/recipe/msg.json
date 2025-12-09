@@ -17,14 +17,14 @@
       }
     ],
     {
-      "item": "minecraft:seagrass"
+      "item": "minecraft:sugar"
     },
     {
-      "item": "badhabits:ground_grass"
+      "item": "minecraft:gunpowder"
     }
   ],
   "result": {
     "count": 1,
-    "id": "badhabits:msgg"
+    "id": "badhabits:msg"
   }
 }

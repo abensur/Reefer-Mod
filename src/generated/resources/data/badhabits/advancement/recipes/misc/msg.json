@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_ground_grass": {
+    "has_gunpowder": {
       "conditions": {
         "items": [
           {
-            "items": "badhabits:ground_grass"
+            "items": "minecraft:gunpowder"
           }
         ]
       },
@@ -31,11 +31,11 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_seagrass": {
+    "has_sugar": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:seagrass"
+            "items": "minecraft:sugar"
           }
         ]
       },
@@ -43,7 +43,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "badhabits:msgg"
+        "recipe": "badhabits:msg"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -53,13 +53,13 @@
       "has_the_recipe",
       "has_mushroom",
       "has_red_mushroom",
-      "has_seagrass",
-      "has_ground_grass"
+      "has_sugar",
+      "has_gunpowder"
     ]
   ],
   "rewards": {
     "recipes": [
-      "badhabits:msgg"
+      "badhabits:msg"
     ]
   }
 }

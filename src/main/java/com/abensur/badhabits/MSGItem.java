@@ -21,8 +21,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-public class MSGGItem extends Item {
-    public MSGGItem(Properties properties) {
+public class MSGItem extends Item {
+    public MSGItem(Properties properties) {
         super(properties);
     }
 
@@ -34,15 +34,15 @@ public class MSGGItem extends Item {
     @Override
     @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.effect").withStyle(ChatFormatting.GOLD));
-        tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.duration").withStyle(ChatFormatting.GRAY));
-        tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.sideeffect").withStyle(ChatFormatting.RED));
+        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.effect").withStyle(ChatFormatting.GOLD));
+        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.duration").withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.sideeffect").withStyle(ChatFormatting.RED));
 
         // Add durability/uses information
         int maxDamage = stack.getMaxDamage();
         int damage = stack.getDamageValue();
         int usesRemaining = maxDamage - damage;
-        tooltipComponents.add(Component.translatable("item.badhabits.msgg.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
@@ -69,9 +69,9 @@ public class MSGGItem extends Item {
     @SuppressWarnings("null")
     public ItemStack finishUsingItem(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull LivingEntity entity) {
         if (entity instanceof Player player && !level.isClientSide()) {
-            // Store when MSGG buff should end (gameTime + duration)
+            // Store when MSG buff should end (gameTime + duration)
             long endTime = level.getGameTime() + 600; // 30 seconds = 600 ticks
-            player.setData(BadHabits.MSGG_BUFF_END_TIME, endTime);
+            player.setData(BadHabits.MSG_BUFF_END_TIME, endTime);
 
             // Apply negative effect (Nausea for 20 seconds)
             player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0, false, false, true)); // Nausea I for 20 seconds

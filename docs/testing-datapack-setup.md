@@ -72,11 +72,41 @@ weather clear
 say §a[Testing] Quick setup complete!
 ```
 
-## 4. Load the Datapack
+## 4. Load the Datapack in Dev Environment
 
+### Option A: Use Gradle Task (Recommended for Dev)
+
+Add this to your `build.gradle`:
+
+```gradle
+// Copy testing datapack to run directory for all new worlds
+task copyTestDatapack(type: Copy) {
+    from 'data/minecraft/datapacks/testing'
+    into 'run/datapacks/testing'
+}
+
+// Run before launching the client
+tasks.named('runClient').configure {
+    dependsOn copyTestDatapack
+}
+```
+
+Now the datapack will be automatically available when you run `./gradlew runClient`.
+
+To enable it in a world:
+1. Create a new world
+2. Open chat and run: `/datapack enable "file/testing"`
+3. Run: `/reload`
+
+### Option B: Manual Copy
 
 ```bash
+# For existing worlds
 cp -r data/minecraft/datapacks/testing run/saves/"YourWorld"/datapacks/
+
+# Or copy to run/datapacks for new worlds to find
+mkdir -p run/datapacks
+cp -r data/minecraft/datapacks/testing run/datapacks/
 ```
 
 ## 5. Add to .gitignore

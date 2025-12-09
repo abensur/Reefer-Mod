@@ -58,9 +58,13 @@ public class BadHabits {
     public static final DeferredItem<Item> GREEN_ENERGY_DRINK = ITEMS.register("green_energy_drink",
             () -> new GreenEnergyDrinkItem(new Item.Properties().durability(3)));
 
-    // MSGG consumable - doubles next food restoration
-    public static final DeferredItem<Item> MSGG = ITEMS.register("msgg",
-            () -> new MSGGItem(new Item.Properties().durability(3)));
+    // MSG consumable - doubles next food restoration
+    public static final DeferredItem<Item> MSG = ITEMS.register("msg",
+            () -> new MSGItem(new Item.Properties().durability(3)));
+
+    // Tear Locker - endgame curio for clearing negative effects
+    public static final DeferredItem<Item> TEAR_LOCKER = ITEMS.register("tear_locker",
+            () -> new TearLockerItem(new Item.Properties().stacksTo(1)));
 
     // Attachment type for tracking flight duration
     @SuppressWarnings("null")
@@ -71,10 +75,10 @@ public class BadHabits {
             .build()
     );
 
-    // Attachment type for tracking MSGG buff duration
+    // Attachment type for tracking MSG buff duration
     @SuppressWarnings("null")
-    public static final Supplier<AttachmentType<Long>> MSGG_BUFF_END_TIME = ATTACHMENTS.register(
-        "msgg_buff_end_time",
+    public static final Supplier<AttachmentType<Long>> MSG_BUFF_END_TIME = ATTACHMENTS.register(
+        "msg_buff_end_time",
         () -> AttachmentType.builder(() -> 0L)
             .serialize(Codec.LONG)
             .build()
@@ -84,6 +88,24 @@ public class BadHabits {
     @SuppressWarnings("null")
     public static final Supplier<AttachmentType<Long>> BEAST_MODE_END_TIME = ATTACHMENTS.register(
         "beast_mode_end_time",
+        () -> AttachmentType.builder(() -> 0L)
+            .serialize(Codec.LONG)
+            .build()
+    );
+
+    // Attachment type for tracking tear locker cooldown
+    @SuppressWarnings("null")
+    public static final Supplier<AttachmentType<Long>> TEAR_LOCKER_COOLDOWN = ATTACHMENTS.register(
+        "tear_locker_cooldown",
+        () -> AttachmentType.builder(() -> 0L)
+            .serialize(Codec.LONG)
+            .build()
+    );
+
+    // Attachment type for tracking tear locker immunity end time
+    @SuppressWarnings("null")
+    public static final Supplier<AttachmentType<Long>> TEAR_LOCKER_IMMUNITY_END = ATTACHMENTS.register(
+        "tear_locker_immunity_end",
         () -> AttachmentType.builder(() -> 0L)
             .serialize(Codec.LONG)
             .build()
@@ -102,7 +124,8 @@ public class BadHabits {
                 output.accept(ENERGY_DRINK_BASE.get());
                 output.accept(RED_ENERGY_DRINK.get());
                 output.accept(GREEN_ENERGY_DRINK.get());
-                output.accept(MSGG.get());
+                output.accept(MSG.get());
+                output.accept(TEAR_LOCKER.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -124,8 +147,14 @@ public class BadHabits {
         // Register energy drink handler for tick events
         EnergyDrinkHandler.register(modEventBus);
 
-        // Register MSGG handler for food events
-        MSGGHandler.register(modEventBus);
+        // Register MSG handler for food events
+        MSGHandler.register(modEventBus);
+
+        // Register Tear Locker handler
+        TearLockerHandler.register(modEventBus);
+
+        // Register network packets
+        modEventBus.addListener(this::registerPayloads);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -135,12 +164,30 @@ public class BadHabits {
         // Common setup
     }
 
+    @SuppressWarnings("null")
+    private void registerPayloads(net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent event) {
+        var registrar = event.registrar("1");
+        registrar.playToServer(
+            ActivateTearLockerPacket.TYPE,
+            ActivateTearLockerPacket.STREAM_CODEC,
+            ActivateTearLockerPacket::handle
+        );
+    }
+
     private void gatherData(GatherDataEvent event) {
         var generator = event.getGenerator();
         var packOutput = generator.getPackOutput();
         var lookupProvider = event.getLookupProvider();
+        var existingFileHelper = event.getExistingFileHelper();
 
         generator.addProvider(event.includeServer(), new BadHabitsRecipeProvider(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new BadHabitsCuriosProvider(MODID, packOutput, existingFileHelper, lookupProvider));
+
+        // Register item tags provider for Curios slot compatibility
+        generator.addProvider(event.includeServer(),
+            new BadHabitsItemTagsProvider(packOutput, lookupProvider,
+                java.util.concurrent.CompletableFuture.completedFuture(net.minecraft.data.tags.TagsProvider.TagLookup.empty()),
+                existingFileHelper));
     }
 
 }
