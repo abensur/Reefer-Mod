@@ -1,5 +1,6 @@
 # Gradle
 .gradle/
+.gradle-user/
 build/
 out/
 bin/
@@ -77,6 +78,3 @@ __pycache__/
 
 # Configuration cache
 .gradle/configuration-cache/
-
-# Testing datapack (dev only)
-data/minecraft/datapacks/testing/
