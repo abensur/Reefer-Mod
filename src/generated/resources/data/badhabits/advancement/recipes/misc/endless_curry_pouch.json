@@ -1,41 +1,31 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gunpowder": {
+    "has_bundle": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:gunpowder"
+            "items": "minecraft:bundle"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_mushroom": {
+    "has_enchanted_golden_apple": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:brown_mushroom"
+            "items": "minecraft:enchanted_golden_apple"
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_red_mushroom": {
+    "has_golden_carrot": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:red_mushroom"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_sugar": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:sugar"
+            "items": "minecraft:golden_carrot"
           }
         ]
       },
@@ -43,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "badhabits:msg"
+        "recipe": "badhabits:endless_curry_pouch"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -51,15 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_mushroom",
-      "has_red_mushroom",
-      "has_sugar",
-      "has_gunpowder"
+      "has_enchanted_golden_apple",
+      "has_golden_carrot",
+      "has_bundle"
     ]
   ],
   "rewards": {
     "recipes": [
-      "badhabits:msg"
+      "badhabits:endless_curry_pouch"
     ]
   }
 }

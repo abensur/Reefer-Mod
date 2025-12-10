@@ -6,6 +6,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
@@ -58,13 +59,33 @@ public class BadHabits {
     public static final DeferredItem<Item> GREEN_ENERGY_DRINK = ITEMS.register("green_energy_drink",
             () -> new GreenEnergyDrinkItem(new Item.Properties().durability(3)));
 
-    // MSG consumable - doubles next food restoration
-    public static final DeferredItem<Item> MSG = ITEMS.register("msg",
-            () -> new MSGItem(new Item.Properties().durability(3)));
+    // Artificial Seasoning consumable - doubles next food restoration
+    public static final DeferredItem<Item> ARTIFICIAL_SEASONING = ITEMS.register("artificial_seasoning",
+            () -> new ArtificialSeasoningItem(new Item.Properties().durability(5)));
+
+    // Empty Tear Locker block item
+    public static final DeferredItem<Item> EMPTY_TEAR_LOCKER_BLOCK_ITEM = ITEMS.register("empty_tear_locker",
+        () -> new EmptyTearLockerBlockItem(ModBlocks.EMPTY_TEAR_LOCKER.get(), new Item.Properties()));
 
     // Tear Locker - endgame curio for clearing negative effects
     public static final DeferredItem<Item> TEAR_LOCKER = ITEMS.register("tear_locker",
-            () -> new TearLockerItem(new Item.Properties().stacksTo(1)));
+            () -> new TearLockerItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+    // Endless Curry Pouch - endgame curio for doubling food nutrition
+    public static final DeferredItem<Item> ENDLESS_CURRY_POUCH = ITEMS.register("endless_curry_pouch",
+            () -> new CurryPouchItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+    // Icarus's Wing - permanent creative flight toggle
+    public static final DeferredItem<Item> ICARUS_WING = ITEMS.register("icarus_wing",
+            () -> new IcarusWingItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+
+    // Beast Template - smithing template for the Dragon Builder Amulet
+    public static final DeferredItem<Item> BEAST_TEMPLATE = ITEMS.register("beast_template",
+            () -> new BeastTemplateItem(new Item.Properties()));
+
+    // Dragon Builder Amulet - curio replacement for the green energy drink
+    public static final DeferredItem<Item> DRAGON_BUILDER_AMULET = ITEMS.register("dragon_builder_amulet",
+            () -> new DragonBuilderAmuletItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
     // Attachment type for tracking flight duration
     @SuppressWarnings("null")
@@ -75,10 +96,10 @@ public class BadHabits {
             .build()
     );
 
-    // Attachment type for tracking MSG buff duration
+    // Attachment type for tracking Artificial Seasoning buff duration
     @SuppressWarnings("null")
-    public static final Supplier<AttachmentType<Long>> MSG_BUFF_END_TIME = ATTACHMENTS.register(
-        "msg_buff_end_time",
+    public static final Supplier<AttachmentType<Long>> ARTIFICIAL_SEASONING_BUFF_END_TIME = ATTACHMENTS.register(
+        "artificial_seasoning_buff_end_time",
         () -> AttachmentType.builder(() -> 0L)
             .serialize(Codec.LONG)
             .build()
@@ -111,6 +132,15 @@ public class BadHabits {
             .build()
     );
 
+    // Attachment to track whether creative flight is currently active from the wing
+    @SuppressWarnings("null")
+    public static final Supplier<AttachmentType<Boolean>> ICARUS_WING_FLIGHT = ATTACHMENTS.register(
+        "icarus_wing_flight",
+        () -> AttachmentType.builder(() -> Boolean.FALSE)
+            .serialize(Codec.BOOL)
+            .build()
+    );
+
     // Creates a creative tab with the id "badhabits:bad_habits_tab" for mod items
     @SuppressWarnings("null")
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> REEFER_TAB = CREATIVE_MODE_TABS.register("bad_habits_tab", () -> CreativeModeTab.builder()
@@ -121,11 +151,16 @@ public class BadHabits {
                 output.accept(ROLLING_PAPER.get());
                 output.accept(GROUND_GRASS.get());
                 output.accept(REEFER.get());
+                output.accept(EMPTY_TEAR_LOCKER_BLOCK_ITEM.get());
                 output.accept(ENERGY_DRINK_BASE.get());
                 output.accept(RED_ENERGY_DRINK.get());
                 output.accept(GREEN_ENERGY_DRINK.get());
-                output.accept(MSG.get());
+                output.accept(ARTIFICIAL_SEASONING.get());
                 output.accept(TEAR_LOCKER.get());
+                output.accept(ENDLESS_CURRY_POUCH.get());
+                output.accept(ICARUS_WING.get());
+                output.accept(BEAST_TEMPLATE.get());
+                output.accept(DRAGON_BUILDER_AMULET.get());
             }).build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -137,6 +172,8 @@ public class BadHabits {
         // Register data generation
         modEventBus.addListener(this::gatherData);
 
+        // Register blocks
+        ModBlocks.BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
@@ -147,11 +184,20 @@ public class BadHabits {
         // Register energy drink handler for tick events
         EnergyDrinkHandler.register(modEventBus);
 
-        // Register MSG handler for food events
-        MSGHandler.register(modEventBus);
+        // Register Artificial Seasoning handler for food events
+        ArtificialSeasoningHandler.register(modEventBus);
 
         // Register Tear Locker handler
         TearLockerHandler.register(modEventBus);
+
+        // Register Endless Curry Pouch handler
+        CurryPouchHandler.register(modEventBus);
+
+        // Register Icarus Wing handler
+        IcarusWingHandler.register(modEventBus);
+
+        // Register Dragon Builder Amulet handler
+        DragonBuilderAmuletHandler.register(modEventBus);
 
         // Register network packets
         modEventBus.addListener(this::registerPayloads);

@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    "B": {
+      "item": "minecraft:bundle"
+    },
+    "C": {
+      "item": "minecraft:golden_carrot"
+    },
+    "G": {
+      "item": "minecraft:glowstone_dust"
+    },
+    "M": {
+      "item": "minecraft:glistering_melon_slice"
+    },
+    "O": {
+      "item": "minecraft:dragon_breath"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "SGR",
+    "CAM",
+    "OBO"
+  ],
+  "result": {
+    "count": 1,
+    "id": "badhabits:endless_curry_pouch"
+  }
+}

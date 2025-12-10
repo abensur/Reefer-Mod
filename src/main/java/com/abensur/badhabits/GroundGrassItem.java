@@ -15,7 +15,6 @@ public class GroundGrassItem extends Item {
     }
 
     @Override
-    @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("item.badhabits.ground_grass.tooltip").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);

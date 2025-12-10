@@ -17,11 +17,9 @@ public class TearLockerItem extends Item implements ICurioItem {
     }
 
     @Override
-    @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("item.badhabits.tear_locker.tooltip.description").withStyle(ChatFormatting.GRAY));
-        tooltipComponents.add(Component.translatable("item.badhabits.tear_locker.tooltip.keybind").withStyle(ChatFormatting.GOLD));
-        tooltipComponents.add(Component.translatable("item.badhabits.tear_locker.tooltip.effect").withStyle(ChatFormatting.AQUA));
+        tooltipComponents.add(Component.translatable("item.badhabits.tear_locker.tooltip.effect").withStyle(ChatFormatting.GREEN));
+        tooltipComponents.add(Component.translatable("item.badhabits.tear_locker.tooltip.info").withStyle(ChatFormatting.YELLOW));
         tooltipComponents.add(Component.translatable("item.badhabits.tear_locker.tooltip.tagline").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }

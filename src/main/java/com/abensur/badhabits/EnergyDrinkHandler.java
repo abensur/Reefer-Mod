@@ -41,7 +41,6 @@ public class EnergyDrinkHandler {
 
                         // Apply energy crash - FINAL EFFECTS (no particle effects)
                         player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600, 1, false, false, true)); // Weakness II for 30s, no particles
-                        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 600, 1, false, false, true)); // Mining Fatigue II for 30s, no particles
 
                         // Crash particles
                         ServerLevel level = (ServerLevel) player.level();
@@ -67,8 +66,7 @@ public class EnergyDrinkHandler {
                     // Apply crash effects after beast mode ends
                     if (!player.isCreative() && !player.isSpectator()) {
                         // "Beast Tamed" - crash effects for 30 seconds (600 ticks)
-                        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 600, 1, false, false, true)); // Weakness II, no particles
-                        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 1, false, false, true)); // Slowness II, no particles
+                        player.addEffect(new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 600, 1, false, false, true)); // Mining Fatigue II, no particles
 
                         // Crash particles
                         ServerLevel level = (ServerLevel) player.level();

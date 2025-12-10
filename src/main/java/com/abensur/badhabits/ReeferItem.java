@@ -30,17 +30,16 @@ public class ReeferItem extends Item {
     }
 
     @Override
-    @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
         // Add effect information
-        tooltipComponents.add(Component.translatable("item.badhabits.reefer.tooltip.clears_effects").withStyle(ChatFormatting.BLUE));
-        tooltipComponents.add(Component.translatable("item.badhabits.reefer.tooltip.applies_slowness").withStyle(ChatFormatting.RED));
+        tooltipComponents.add(Component.translatable("item.badhabits.reefer.tooltip.boost").withStyle(ChatFormatting.GREEN));
+        tooltipComponents.add(Component.translatable("item.badhabits.reefer.tooltip.crash").withStyle(ChatFormatting.RED));
 
         // Add durability/uses information
         int maxDamage = stack.getMaxDamage();
         int damage = stack.getDamageValue();
         int usesRemaining = maxDamage - damage;
-        tooltipComponents.add(Component.translatable("item.badhabits.reefer.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.reefer.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.DARK_GRAY));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
@@ -166,7 +165,7 @@ public class ReeferItem extends Item {
 
     /**
      * Override this method to customize the effects applied when the reefer is consumed.
-     * Default behavior: Clears all effects and applies Slowness I for 10 seconds.
+     * Default behavior: Clears all effects and applies Slowness II for 30 seconds.
      *
      * @param player The player consuming the reefer
      */
@@ -175,8 +174,8 @@ public class ReeferItem extends Item {
         // Default: Clear all effects (like milk)
         player.removeAllEffects();
 
-        // Apply slight slowness (Slowness I for 10 seconds) WITHOUT particles
+        // Apply stronger slowness (Slowness II for 30 seconds) WITHOUT particles
         // ambient=false, showParticles=false, showIcon=true
-        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 0, false, false, true));
+        player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600, 1, false, false, true));
     }
 }

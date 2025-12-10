@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import javax.annotation.Nonnull;
@@ -84,38 +84,98 @@ public class BadHabitsRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_rotten_flesh", has(Items.ROTTEN_FLESH))
                 .save(output);
 
-        // MSG recipe: Any Mushroom + Sugar + Gunpowder -> MSG
-        // Using Ingredient.of() to accept multiple mushroom types including modded ones
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, BadHabits.MSG.get())
-                .requires(Ingredient.of(
-                    Items.BROWN_MUSHROOM,
-                    Items.RED_MUSHROOM,
-                    Items.CRIMSON_FUNGUS,
-                    Items.WARPED_FUNGUS
-                ))
-                .requires((ItemLike) Items.SUGAR)
-                .requires((ItemLike) Items.GUNPOWDER)
-                .unlockedBy("has_mushroom", has(Items.BROWN_MUSHROOM))
-                .unlockedBy("has_red_mushroom", has(Items.RED_MUSHROOM))
-                .unlockedBy("has_sugar", has(Items.SUGAR))
-                .unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
+        // Artificial Seasoning recipe: Dyes + Clay + Paper -> Artificial Seasoning
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.ARTIFICIAL_SEASONING.get())
+                .pattern("WYR")
+                .pattern(" C ")
+                .pattern(" P ")
+                .define('W', Items.WHITE_DYE)
+                .define('Y', Items.YELLOW_DYE)
+                .define('R', Items.RED_DYE)
+                .define('C', Items.CLAY_BALL)
+                .define('P', Items.PAPER)
+                .unlockedBy("has_white_dye", has(Items.WHITE_DYE))
+                .unlockedBy("has_yellow_dye", has(Items.YELLOW_DYE))
+                .unlockedBy("has_red_dye", has(Items.RED_DYE))
+                .unlockedBy("has_clay_ball", has(Items.CLAY_BALL))
+                .unlockedBy("has_paper", has(Items.PAPER))
                 .save(output);
 
-        // Tear Locker recipe: Heavy Core + Ghast Tears + Rolling Papers (shaped)
-        // Pattern:
-        //   [ ] [Rolling Paper] [ ]
-        //   [Ghast Tear] [Heavy Core] [Ghast Tear]
-        //   [ ] [Rolling Paper] [ ]
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.TEAR_LOCKER.get())
+        // Beast Template recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.BEAST_TEMPLATE.get())
+                .pattern("SPS")
+                .pattern("SCS")
+                .pattern("SSS")
+                .define('S', Items.ARMADILLO_SCUTE)
+                .define('P', Items.BAKED_POTATO)
+                .define('C', Items.COOKED_CHICKEN)
+                .unlockedBy("has_armadillo_scute", has(Items.ARMADILLO_SCUTE))
+                .unlockedBy("has_baked_potato", has(Items.BAKED_POTATO))
+                .unlockedBy("has_cooked_chicken", has(Items.COOKED_CHICKEN))
+                .save(output);
+
+        // Empty Tear Locker recipe: Heavy Core + 4 Rolling Papers (shaped)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.EMPTY_TEAR_LOCKER_BLOCK_ITEM.get())
                 .pattern(" R ")
-                .pattern("THT")
+                .pattern("RHR")
                 .pattern(" R ")
                 .define('R', BadHabits.ROLLING_PAPER.get())
-                .define('T', Items.GHAST_TEAR)
                 .define('H', Items.HEAVY_CORE)
                 .unlockedBy("has_heavy_core", has(Items.HEAVY_CORE))
-                .unlockedBy("has_ghast_tear", has(Items.GHAST_TEAR))
                 .unlockedBy("has_rolling_paper", has(BadHabits.ROLLING_PAPER.get()))
+                .save(output);
+
+        // Dragon Builder Amulet smithing recipe
+        SmithingTransformRecipeBuilder.smithing(
+                Ingredient.of(BadHabits.BEAST_TEMPLATE.get()),
+                Ingredient.of(Items.CHAIN),
+                Ingredient.of(Items.DRAGON_EGG),
+                RecipeCategory.MISC,
+                BadHabits.DRAGON_BUILDER_AMULET.get()
+        )
+                .unlocks("has_beast_template", has(BadHabits.BEAST_TEMPLATE.get()))
+                .unlocks("has_chain", has(Items.CHAIN))
+                .unlocks("has_dragon_egg", has(Items.DRAGON_EGG))
+                .save(output, BadHabits.MODID + ":dragon_builder_amulet");
+
+        // Endless Curry Pouch recipe: Enchanted Golden Apple + Golden ingredients + Bundle + Dragon's Breath (shaped)
+        // Pattern:
+        //   [Sugar] [Glowstone Dust] [Redstone Dust]
+        //   [Golden Carrot] [Enchanted Golden Apple] [Glistering Melon]
+        //   [Dragon's Breath] [Bundle] [Dragon's Breath]
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.ENDLESS_CURRY_POUCH.get())
+                .pattern("SGR")
+                .pattern("CAM")
+                .pattern("OBO")
+                .define('S', Items.SUGAR)
+                .define('G', Items.GLOWSTONE_DUST)
+                .define('R', Items.REDSTONE)
+                .define('C', Items.GOLDEN_CARROT)
+                .define('A', Items.ENCHANTED_GOLDEN_APPLE)
+                .define('M', Items.GLISTERING_MELON_SLICE)
+                .define('B', Items.BUNDLE)
+                .define('O', Items.DRAGON_BREATH)
+                .unlockedBy("has_enchanted_golden_apple", has(Items.ENCHANTED_GOLDEN_APPLE))
+                .unlockedBy("has_golden_carrot", has(Items.GOLDEN_CARROT))
+                .unlockedBy("has_bundle", has(Items.BUNDLE))
+                .save(output);
+
+        // Icarus's Wing recipe:
+        //   [ ] [Elytra] [ ]
+        //   [Slime] [String] [Slime]
+        //   [Feather] [ ] [Feather]
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, BadHabits.ICARUS_WING.get())
+                .pattern(" E ")
+                .pattern("SPS")
+                .pattern("F F")
+                .define('E', Items.ELYTRA)
+                .define('S', Items.SLIME_BALL)
+                .define('P', Items.STRING)
+                .define('F', Items.FEATHER)
+                .unlockedBy("has_elytra", has(Items.ELYTRA))
+                .unlockedBy("has_slime_ball", has(Items.SLIME_BALL))
+                .unlockedBy("has_string", has(Items.STRING))
+                .unlockedBy("has_feather", has(Items.FEATHER))
                 .save(output);
     }
 }

@@ -15,7 +15,6 @@ public class RollingPaperItem extends Item {
     }
 
     @Override
-    @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("item.badhabits.rolling_paper.tooltip").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);

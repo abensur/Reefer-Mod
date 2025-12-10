@@ -55,11 +55,11 @@ Applies negative effects (poison, wither, slowness, etc.) to test reefer clearin
 ```
 Switches to survival mode to test energy drink flight.
 
-**Test Hunger/MSG:**
+**Test Hunger/Artificial Seasoning:**
 ```
 /function debug:test_hunger
 ```
-Applies hunger effect to test MSG food enhancement.
+Applies hunger effect to test the seasoning food enhancement.
 
 **Clean Up:**
 ```
@@ -76,8 +76,10 @@ Clears inventory and effects, returns to creative mode.
 - `badhabits:energy_drink_base` (1)
 - `badhabits:red_energy_drink` (1)
 - `badhabits:green_energy_drink` (1)
-- `badhabits:msg` (1)
+- `badhabits:artificial_seasoning` (1)
 - `badhabits:tear_locker` (1)
+- `badhabits:beast_template` (1)
+- `badhabits:dragon_builder_amulet` (1)
 
 ### Crafting Ingredients
 - Crafting Table
@@ -85,17 +87,22 @@ Clears inventory and effects, returns to creative mode.
 - Paper (64) - for Rolling Paper
 - Slime Ball (64) - for Rolling Paper
 - Iron Nugget (64) - for Energy Drink Base
-- Sugar (64) - for Energy Drink Base & MSG
-- Water Bottle (1) - for Energy Drink Base
-- Red Dye (64) - for Red Energy Drink
+- Sugar (64) - for Energy Drink Base
+- Water Bottle (4) - for Energy Drink Base
+- Red Dye (64) - for Red Energy Drink & Artificial Seasoning
 - Leather (64) - for Red Energy Drink
 - Green Dye (64) - for Green Energy Drink
 - Rotten Flesh (64) - for Green Energy Drink
-- Brown Mushroom (64) - for MSG
-- Red Mushroom (64) - for MSG
-- Gunpowder (64) - for MSG
+- White Dye (64) - for Artificial Seasoning
+- Yellow Dye (64) - for Artificial Seasoning
+- Clay Ball (64) - for Artificial Seasoning
 - Ghast Tear (64) - for Tear Locker
-- Heavy Core (1) - for Tear Locker
+- Heavy Core (2) - for Tear Locker
+- Armadillo Scute (64) - for Beast Template
+- Cooked Chicken (64) - for Beast Template
+- Baked Potato (64) - for Beast Template
+- Chain (64) - for Dragon Builder Amulet
+- Dragon Egg (1) - for Dragon Builder Amulet
 
 ## Troubleshooting
 

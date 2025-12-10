@@ -11,8 +11,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -21,8 +19,8 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-public class MSGItem extends Item {
-    public MSGItem(Properties properties) {
+public class ArtificialSeasoningItem extends Item {
+    public ArtificialSeasoningItem(Properties properties) {
         super(properties);
     }
 
@@ -32,17 +30,15 @@ public class MSGItem extends Item {
     }
 
     @Override
-    @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.effect").withStyle(ChatFormatting.GOLD));
-        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.duration").withStyle(ChatFormatting.GRAY));
-        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.sideeffect").withStyle(ChatFormatting.RED));
+        tooltipComponents.add(Component.translatable("item.badhabits.artificial_seasoning.tooltip.boost").withStyle(ChatFormatting.GREEN));
+        tooltipComponents.add(Component.translatable("item.badhabits.artificial_seasoning.tooltip.crash").withStyle(ChatFormatting.RED));
 
         // Add durability/uses information
         int maxDamage = stack.getMaxDamage();
         int damage = stack.getDamageValue();
         int usesRemaining = maxDamage - damage;
-        tooltipComponents.add(Component.translatable("item.badhabits.msg.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.artificial_seasoning.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.DARK_GRAY));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
@@ -69,12 +65,9 @@ public class MSGItem extends Item {
     @SuppressWarnings("null")
     public ItemStack finishUsingItem(@Nonnull ItemStack stack, @Nonnull Level level, @Nonnull LivingEntity entity) {
         if (entity instanceof Player player && !level.isClientSide()) {
-            // Store when MSG buff should end (gameTime + duration)
+            // Store when the seasoning buff should end (gameTime + duration)
             long endTime = level.getGameTime() + 600; // 30 seconds = 600 ticks
-            player.setData(BadHabits.MSG_BUFF_END_TIME, endTime);
-
-            // Apply negative effect (Nausea for 20 seconds)
-            player.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 400, 0, false, false, true)); // Nausea I for 20 seconds
+            player.setData(BadHabits.ARTIFICIAL_SEASONING_BUFF_END_TIME, endTime);
 
             // Activation particles (golden/yellow for food enhancement)
             if (level instanceof ServerLevel serverLevel) {
@@ -87,7 +80,7 @@ public class MSGItem extends Item {
             level.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.PLAYER_BURP, SoundSource.PLAYERS, 0.5F, 1.2F);
 
-            // Damage the item; it will break after 3 uses
+            // Damage the item; it will break after 5 uses
             if (!player.isCreative()) {
                 stack.hurtAndBreak(1, player, player.getUsedItemHand() == InteractionHand.MAIN_HAND
                         ? net.minecraft.world.entity.EquipmentSlot.MAINHAND : net.minecraft.world.entity.EquipmentSlot.OFFHAND);

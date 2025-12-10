@@ -19,11 +19,17 @@ A Minecraft mod that adds consumable items with meaningful tradeoffs and interes
 - **3 Uses**: Non-stackable with durability
 - **Recipe**: Iron nuggets, redstone, and sugar
 
-### MSGG (Flavor Enhancer)
+### Dragon Builder Amulet
+- **Beast Template**: Craftable meal plan made from armadillo scutes, baked potato, and cooked chicken
+- **Smithing Upgrade**: Combine the template with a chain and the dragon egg to forge the amulet
+- **Permanent Buff**: Grants passive Strength II and Haste II when carried or equipped
+- **Clean Fuel**: Zero drawbacks—this replaces the jittery drink with pure Beast Mode discipline
+
+### Artificial Seasoning (Flavor Enhancer)
 - **Food Doubler**: Next food eaten restores double hunger and saturation
 - **30 Second Buff**: Use within 30 seconds or it expires
-- **3 Uses**: Non-stackable with durability
-- **Recipe**: Any mushroom, seagrass, and ground grass
+- **5 Uses**: Non-stackable with durability
+- **Recipe**: White/Yellow/Red dyes plus a clay ball and paper
 
 ## Design Philosophy
 

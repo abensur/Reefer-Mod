@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:dragon_egg"
+  },
+  "base": {
+    "item": "minecraft:chain"
+  },
+  "result": {
+    "count": 1,
+    "id": "badhabits:dragon_builder_amulet"
+  },
+  "template": {
+    "item": "badhabits:beast_template"
+  }
+}

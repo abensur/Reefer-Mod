@@ -7,18 +7,15 @@
     },
     "R": {
       "item": "badhabits:rolling_paper"
-    },
-    "T": {
-      "item": "minecraft:ghast_tear"
     }
   },
   "pattern": [
     " R ",
-    "THT",
+    "RHR",
     " R "
   ],
   "result": {
     "count": 1,
-    "id": "badhabits:tear_locker"
+    "id": "badhabits:empty_tear_locker"
   }
 }

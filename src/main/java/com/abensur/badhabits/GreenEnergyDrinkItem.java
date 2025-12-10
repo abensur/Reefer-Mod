@@ -30,17 +30,15 @@ public class GreenEnergyDrinkItem extends Item {
     }
 
     @Override
-    @SuppressWarnings("null")
     public void appendHoverText(@Nonnull ItemStack stack, @Nonnull TooltipContext context, @Nonnull List<Component> tooltipComponents, @Nonnull TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("item.badhabits.green_energy_drink.tooltip.boost").withStyle(ChatFormatting.GREEN));
-        tooltipComponents.add(Component.translatable("item.badhabits.green_energy_drink.tooltip.hunger").withStyle(ChatFormatting.RED));
         tooltipComponents.add(Component.translatable("item.badhabits.green_energy_drink.tooltip.crash").withStyle(ChatFormatting.RED));
 
         // Add durability/uses information
         int maxDamage = stack.getMaxDamage();
         int damage = stack.getDamageValue();
         int usesRemaining = maxDamage - damage;
-        tooltipComponents.add(Component.translatable("item.badhabits.green_energy_drink.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.GRAY));
+        tooltipComponents.add(Component.translatable("item.badhabits.green_energy_drink.tooltip.uses", usesRemaining, maxDamage).withStyle(ChatFormatting.DARK_GRAY));
 
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
@@ -76,10 +74,6 @@ public class GreenEnergyDrinkItem extends Item {
             // Store when beast mode should end (gameTime + 2400 ticks)
             long endTime = level.getGameTime() + 2400;
             player.setData(BadHabits.BEAST_MODE_END_TIME, endTime);
-
-            // Apply immediate hunger (like Monster Energy)
-            player.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 2, false, false, true));
-            player.getFoodData().addExhaustion(6.0F);
 
             // Play burp sound
             level.playSound(null, player.getX(), player.getY(), player.getZ(),

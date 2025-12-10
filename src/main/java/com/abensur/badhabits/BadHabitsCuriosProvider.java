@@ -24,5 +24,34 @@ public class BadHabitsCuriosProvider extends CuriosDataProvider {
         this.createEntities("player")
             .addPlayer()
             .addSlots("charm");
+
+        // Create an amulet slot for neck curios
+        this.createSlot("amulet")
+            .size(1)
+            .order(12);
+
+        this.createEntities("player")
+            .addPlayer()
+            .addSlots("amulet");
+
+        // Create the belt slot with size 1
+        this.createSlot("belt")
+            .size(1)
+            .order(20);
+
+        // Assign the belt slot to players
+        this.createEntities("player")
+            .addPlayer()
+            .addSlots("belt");
+
+        // Create a back slot with size 1 for wing-type curios
+        this.createSlot("back")
+            .size(1)
+            .order(15);
+
+        // Assign the back slot to players
+        this.createEntities("player")
+            .addPlayer()
+            .addSlots("back");
     }
 }

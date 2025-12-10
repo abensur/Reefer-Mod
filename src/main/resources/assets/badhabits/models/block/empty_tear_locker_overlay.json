@@ -1,0 +1,15 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "overlay": "badhabits:block/empty_tear_locker_active"
+  },
+  "elements": [
+    {
+      "from": [4, 0, 4],
+      "to": [12, 8, 12],
+      "faces": {
+        "north": { "texture": "#overlay", "uv": [0, 0, 16, 16] }
+      }
+    }
+  ]
+}
